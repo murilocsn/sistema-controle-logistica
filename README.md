@@ -81,7 +81,10 @@ npm run dev:api
 
 As migrations ficam em `supabase/migrations/`.
 
-A Fase 2 adiciona a migration `20261008000100_phase_2_core_tables.sql`, que cria a base multiempresa, RLS e tabelas iniciais de operacao.
+A Fase 2 adiciona as migrations:
+
+- `20261009013538_20261008000100_phase_2_core_tables.sql`, que cria a base multiempresa, RLS e tabelas iniciais de operacao;
+- `20261009013646_20261008000200_harden_phase_2_functions.sql`, que endurece funcoes auxiliares apontadas pelos advisors do Supabase.
 
 ## Proximas fases
 
