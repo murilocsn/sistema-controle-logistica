@@ -1,15 +1,16 @@
-import { createClient, type SupabaseClient } from "@supabase/supabase-js";
+﻿import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { env, isSupabaseConfigured } from "../config/env";
+import type { Database } from "../types/supabase";
 
-let supabaseClient: SupabaseClient | null = null;
+let supabaseClient: SupabaseClient<Database> | null = null;
 
-export function getSupabaseClient() {
+export function getSupabaseClient(): SupabaseClient<Database> {
   if (!isSupabaseConfigured) {
     throw new Error("Supabase nao configurado.");
   }
 
   if (!supabaseClient) {
-    supabaseClient = createClient(env.supabaseUrl, env.supabaseAnonKey, {
+    supabaseClient = createClient<Database>(env.supabaseUrl, env.supabaseAnonKey, {
       auth: {
         autoRefreshToken: true,
         persistSession: true,

@@ -1,10 +1,10 @@
-# Sistema de Controle Logistica
+﻿# Sistema de Controle Logistica
 
 MVP web para gestao operacional de frota de caminhoes, com React, TypeScript, Vite, Tailwind CSS, Node.js e Supabase.
 
 ## Estado atual
 
-Fase 1 implementada:
+Fase 1 concluida:
 
 - estrutura base em monorepo;
 - frontend React com Vite e TypeScript strict;
@@ -14,7 +14,19 @@ Fase 1 implementada:
 - protecao de rotas autenticadas;
 - backend Node/TypeScript com health check e middleware de autenticacao preparado para Supabase.
 
-Os modulos de veiculos, motoristas, clientes, viagens, despesas, dashboard real e rastreamento entram nas fases seguintes.
+Fase 2 iniciada/concluida no escopo do MVP:
+
+- migration SQL com tabelas `companies`, `company_users`, `vehicles`, `drivers` e `customers`;
+- `company_id` nas tabelas operacionais;
+- RLS por empresa usando Supabase Auth;
+- cadastro inicial de empresa pelo usuario autenticado;
+- CRUD de veiculos;
+- CRUD de motoristas;
+- CRUD de clientes/fornecedores;
+- validacoes basicas de placa, CPF, CNPJ, e-mail e campos obrigatorios;
+- constraints de duplicidade por empresa para placa, CPF, CNH e CNPJ.
+
+Os modulos de viagens, despesas, dashboard real e rastreamento entram nas fases seguintes.
 
 ## Estrutura
 
@@ -67,12 +79,13 @@ npm run dev:api
 
 ## Banco
 
-As migrations do Supabase com tabelas, `company_id` e RLS serao criadas na Fase 2.
+As migrations ficam em `supabase/migrations/`.
+
+A Fase 2 adiciona a migration `20261008000100_phase_2_core_tables.sql`, que cria a base multiempresa, RLS e tabelas iniciais de operacao.
 
 ## Proximas fases
 
-1. Fase 2: banco, RLS, veiculos, motoristas e clientes.
-2. Fase 3: viagens, despesas e dashboard com dados reais.
-3. Fase 4: tabelas de rastreamento, provider mock e mapa.
-4. Fase 5: providers Positron/Sascar e integracoes.
-5. Fase 6: documentacao completa, testes finais, seguranca e deploy.
+1. Fase 3: viagens, despesas e dashboard com dados reais.
+2. Fase 4: tabelas de rastreamento, provider mock e mapa.
+3. Fase 5: providers Positron/Sascar e integracoes.
+4. Fase 6: documentacao completa, testes finais, seguranca e deploy.

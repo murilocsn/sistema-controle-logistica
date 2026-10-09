@@ -1,4 +1,4 @@
-import {
+﻿import {
   BarChart3,
   CreditCard,
   Menu,
@@ -13,6 +13,7 @@ import {
 import { useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { useAuth } from "../auth/useAuth";
+import { useCompany } from "../company/useCompany";
 
 const mainItems = [
   { label: "Dashboard", path: "/", icon: BarChart3 },
@@ -32,6 +33,7 @@ const settingsItems = [
 export function AppLayout() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { user, signOut } = useAuth();
+  const { company } = useCompany();
 
   const handleSignOut = async () => {
     await signOut();
@@ -42,7 +44,7 @@ export function AppLayout() {
       <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-graphite-100 bg-white px-4 shadow-subtle lg:hidden">
         <div>
           <p className="text-sm font-semibold text-graphite-900">Controle Logistica</p>
-          <p className="text-xs text-graphite-700">Frota operacional</p>
+          <p className="text-xs text-graphite-700">{company?.name ?? "Frota operacional"}</p>
         </div>
         <button
           type="button"
@@ -62,7 +64,7 @@ export function AppLayout() {
         <div className="flex h-full flex-col">
           <div className="border-b border-graphite-100 px-5 py-5">
             <p className="text-base font-semibold text-graphite-900">Controle Logistica</p>
-            <p className="mt-1 text-sm text-graphite-700">Gestao de frota</p>
+            <p className="mt-1 truncate text-sm text-graphite-700">{company?.name ?? "Gestao de frota"}</p>
           </div>
 
           <nav className="flex-1 space-y-6 overflow-y-auto px-3 py-4">
