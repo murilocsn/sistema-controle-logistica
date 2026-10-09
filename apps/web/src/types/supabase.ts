@@ -186,6 +186,132 @@ export type Database = {
         };
         Relationships: [];
       };
+      trips: {
+        Row: {
+          id: string;
+          company_id: string;
+          vehicle_id: string;
+          driver_id: string;
+          customer_id: string;
+          origin: string;
+          destination: string;
+          planned_departure_at: string;
+          actual_departure_at: string | null;
+          estimated_arrival_at: string | null;
+          actual_arrival_at: string | null;
+          freight_value: number;
+          status: "scheduled" | "loading" | "in_transit" | "delivered" | "completed" | "cancelled";
+          notes: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          company_id: string;
+          vehicle_id: string;
+          driver_id: string;
+          customer_id: string;
+          origin: string;
+          destination: string;
+          planned_departure_at: string;
+          actual_departure_at?: string | null;
+          estimated_arrival_at?: string | null;
+          actual_arrival_at?: string | null;
+          freight_value?: number;
+          status?: "scheduled" | "loading" | "in_transit" | "delivered" | "completed" | "cancelled";
+          notes?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          company_id?: string;
+          vehicle_id?: string;
+          driver_id?: string;
+          customer_id?: string;
+          origin?: string;
+          destination?: string;
+          planned_departure_at?: string;
+          actual_departure_at?: string | null;
+          estimated_arrival_at?: string | null;
+          actual_arrival_at?: string | null;
+          freight_value?: number;
+          status?: "scheduled" | "loading" | "in_transit" | "delivered" | "completed" | "cancelled";
+          notes?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      trip_expenses: {
+        Row: {
+          id: string;
+          company_id: string;
+          trip_id: string;
+          expense_type: "fuel" | "toll" | "food" | "parking" | "maintenance" | "other";
+          description: string;
+          amount: number;
+          expense_date: string;
+          notes: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          company_id: string;
+          trip_id: string;
+          expense_type: "fuel" | "toll" | "food" | "parking" | "maintenance" | "other";
+          description: string;
+          amount: number;
+          expense_date?: string;
+          notes?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          company_id?: string;
+          trip_id?: string;
+          expense_type?: "fuel" | "toll" | "food" | "parking" | "maintenance" | "other";
+          description?: string;
+          amount?: number;
+          expense_date?: string;
+          notes?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      trip_status_history: {
+        Row: {
+          id: string;
+          company_id: string;
+          trip_id: string;
+          previous_status: "scheduled" | "loading" | "in_transit" | "delivered" | "completed" | "cancelled" | null;
+          new_status: "scheduled" | "loading" | "in_transit" | "delivered" | "completed" | "cancelled";
+          notes: string | null;
+          changed_at: string;
+        };
+        Insert: {
+          id?: string;
+          company_id: string;
+          trip_id: string;
+          previous_status?: "scheduled" | "loading" | "in_transit" | "delivered" | "completed" | "cancelled" | null;
+          new_status: "scheduled" | "loading" | "in_transit" | "delivered" | "completed" | "cancelled";
+          notes?: string | null;
+          changed_at?: string;
+        };
+        Update: {
+          id?: string;
+          company_id?: string;
+          trip_id?: string;
+          previous_status?: "scheduled" | "loading" | "in_transit" | "delivered" | "completed" | "cancelled" | null;
+          new_status?: "scheduled" | "loading" | "in_transit" | "delivered" | "completed" | "cancelled";
+          notes?: string | null;
+          changed_at?: string;
+        };
+        Relationships: [];
+      };
     };
     Views: Record<string, never>;
     Functions: {

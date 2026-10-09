@@ -26,7 +26,16 @@ Fase 2 iniciada/concluida no escopo do MVP:
 - validacoes basicas de placa, CPF, CNPJ, e-mail e campos obrigatorios;
 - constraints de duplicidade por empresa para placa, CPF, CNH e CNPJ.
 
-Os modulos de viagens, despesas, dashboard real e rastreamento entram nas fases seguintes.
+Fase 3 iniciada/concluida no escopo do MVP:
+
+- migration SQL com `trips`, `trip_expenses` e `trip_status_history`;
+- CRUD de viagens com veiculo, motorista, cliente, rota, datas, frete e status;
+- historico automatico de mudanca de status da viagem;
+- CRUD de despesas por viagem;
+- resumo financeiro por viagem;
+- dashboard conectado a dados reais de veiculos, viagens, faturamento, despesas e resultado.
+
+O modulo de rastreamento entra na fase seguinte.
 
 ## Estrutura
 
@@ -86,9 +95,13 @@ A Fase 2 adiciona as migrations:
 - `20261009013538_20261008000100_phase_2_core_tables.sql`, que cria a base multiempresa, RLS e tabelas iniciais de operacao;
 - `20261009013646_20261008000200_harden_phase_2_functions.sql`, que endurece funcoes auxiliares apontadas pelos advisors do Supabase.
 
+A Fase 3 adiciona as migrations:
+
+- `20261009115334_phase_3_trips_expenses_dashboard.sql`, que cria viagens, despesas de viagem, historico de status, RLS e relacoes multiempresa;
+- `20261009120005_phase_3_cover_composite_foreign_key_indexes.sql`, que adiciona indices compostos para as chaves estrangeiras multiempresa.
+
 ## Proximas fases
 
-1. Fase 3: viagens, despesas e dashboard com dados reais.
-2. Fase 4: tabelas de rastreamento, provider mock e mapa.
-3. Fase 5: providers Positron/Sascar e integracoes.
-4. Fase 6: documentacao completa, testes finais, seguranca e deploy.
+1. Fase 4: tabelas de rastreamento, provider mock e mapa.
+2. Fase 5: providers Positron/Sascar e integracoes.
+3. Fase 6: documentacao completa, testes finais, seguranca e deploy.
