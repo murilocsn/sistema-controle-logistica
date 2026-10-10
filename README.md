@@ -26,7 +26,7 @@ Fase 2 iniciada/concluida no escopo do MVP:
 - validacoes basicas de placa, CPF, CNPJ, e-mail e campos obrigatorios;
 - constraints de duplicidade por empresa para placa, CPF, CNH e CNPJ.
 
-Fase 3 iniciada/concluida no escopo do MVP:
+Fase 3 concluida no escopo do MVP:
 
 - migration SQL com `trips`, `trip_expenses` e `trip_status_history`;
 - CRUD de viagens com veiculo, motorista, cliente, rota, datas, frete e status;
@@ -35,7 +35,19 @@ Fase 3 iniciada/concluida no escopo do MVP:
 - resumo financeiro por viagem;
 - dashboard conectado a dados reais de veiculos, viagens, faturamento, despesas e resultado.
 
-O modulo de rastreamento entra na fase seguinte.
+Fase 4 concluida no escopo do MVP:
+
+- migration SQL com `tracking_providers`, `tracking_devices`, `tracking_positions`, `tracking_events` e `tracking_sync_logs`;
+- RLS por empresa nas tabelas de rastreamento;
+- provider mock para gerar posicoes de frota a partir dos veiculos cadastrados;
+- pagina `/tracking` com mapa Leaflet/OpenStreetMap, filtros por status e historico de sincronizacao.
+
+Fase 5 concluida no escopo do MVP:
+
+- arquitetura de providers no backend para Mock, Positron e Sascar;
+- endpoint autenticado `/api/tracking/providers/status` sem exposicao de segredos;
+- pagina `/settings/integrations` para ativar providers e checar status operacional;
+- variaveis de ambiente preparadas para credenciais Positron/Sascar somente no backend.
 
 ## Estrutura
 
@@ -63,6 +75,12 @@ Preencha as variaveis do Supabase:
 - `SUPABASE_URL`
 - `SUPABASE_ANON_KEY`
 - `SUPABASE_SERVICE_ROLE_KEY`
+- `POSITRON_API_URL`
+- `POSITRON_USERNAME`
+- `POSITRON_PASSWORD`
+- `SASCAR_API_URL`
+- `SASCAR_USERNAME`
+- `SASCAR_PASSWORD`
 
 Nunca use `SUPABASE_SERVICE_ROLE_KEY` no frontend.
 
@@ -100,8 +118,11 @@ A Fase 3 adiciona as migrations:
 - `20261009115334_phase_3_trips_expenses_dashboard.sql`, que cria viagens, despesas de viagem, historico de status, RLS e relacoes multiempresa;
 - `20261009120005_phase_3_cover_composite_foreign_key_indexes.sql`, que adiciona indices compostos para as chaves estrangeiras multiempresa.
 
+A Fase 4 adiciona a migration:
+
+- `20261010170134_phase_4_tracking_tables.sql`, que cria tabelas de rastreamento, provider/device/positions/events/logs, RLS e indices de consulta por empresa.
+
 ## Proximas fases
 
-1. Fase 4: tabelas de rastreamento, provider mock e mapa.
-2. Fase 5: providers Positron/Sascar e integracoes.
-3. Fase 6: documentacao completa, testes finais, seguranca e deploy.
+1. Fase 6: documentacao completa, testes finais, seguranca e deploy.
+2. Integracao real Positron/Sascar quando os contratos/endpoints oficiais estiverem disponiveis.

@@ -3,6 +3,7 @@ import express from "express";
 import helmet from "helmet";
 import { env } from "./config/env.js";
 import { type AuthenticatedRequest, requireAuth } from "./middleware/requireAuth.js";
+import { listTrackingProviderRuntimeStatus } from "./tracking/providerFactory.js";
 
 export function createServer() {
   const app = express();
@@ -26,6 +27,12 @@ export function createServer() {
     res.json({
       id: authenticatedReq.user.id,
       email: authenticatedReq.user.email ?? null
+    });
+  });
+
+  app.get("/api/tracking/providers/status", requireAuth, (_req, res) => {
+    res.json({
+      providers: listTrackingProviderRuntimeStatus()
     });
   });
 

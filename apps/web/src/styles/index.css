@@ -24,6 +24,77 @@ body {
 }
 
 button,
-input {
+input,
+select,
+textarea {
   font: inherit;
+}
+
+.fleet-marker {
+  background: transparent;
+  border: 0;
+}
+
+.fleet-marker-dot {
+  display: block;
+  height: 22px;
+  width: 22px;
+  border: 3px solid #ffffff;
+  border-radius: 999px;
+  box-shadow: 0 8px 18px rgb(15 23 42 / 0.26);
+}
+
+.fleet-marker-dot--moving {
+  background: #16a34a;
+}
+
+.fleet-marker-dot--in_trip {
+  background: #2563eb;
+}
+
+.fleet-marker-dot--stopped {
+  background: #d97706;
+}
+
+.fleet-marker-dot--offline {
+  background: #64748b;
+}
+
+.fleet-popup {
+  display: grid;
+  gap: 2px;
+  min-width: 150px;
+  color: #151c1f;
+}
+
+.fleet-popup span {
+  display: block;
+}
+
+.status-pill {
+  white-space: nowrap;
+  border-radius: 999px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.status-pill--moving {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.status-pill--in_trip {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.status-pill--stopped {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.status-pill--offline {
+  background: #e2e8f0;
+  color: #334155;
 }

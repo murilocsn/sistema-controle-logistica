@@ -7,6 +7,18 @@ type ApiEnv = {
   supabaseAnonKey: string;
   supabaseServiceRoleKey: string;
   supabaseConfigured: boolean;
+  tracking: {
+    positron: {
+      apiUrl: string;
+      username: string;
+      password: string;
+    };
+    sascar: {
+      apiUrl: string;
+      username: string;
+      password: string;
+    };
+  };
 };
 
 function readPort() {
@@ -34,5 +46,17 @@ export const env: ApiEnv = {
   supabaseUrl,
   supabaseAnonKey,
   supabaseServiceRoleKey,
-  supabaseConfigured: Boolean(supabaseUrl && supabaseAnonKey && supabaseServiceRoleKey)
+  supabaseConfigured: Boolean(supabaseUrl && supabaseAnonKey && supabaseServiceRoleKey),
+  tracking: {
+    positron: {
+      apiUrl: readOptional("POSITRON_API_URL"),
+      username: readOptional("POSITRON_USERNAME"),
+      password: readOptional("POSITRON_PASSWORD")
+    },
+    sascar: {
+      apiUrl: readOptional("SASCAR_API_URL"),
+      username: readOptional("SASCAR_USERNAME"),
+      password: readOptional("SASCAR_PASSWORD")
+    }
+  }
 };

@@ -1,5 +1,10 @@
 ﻿export type Json = string | number | boolean | null | { [key: string]: Json | undefined } | Json[];
 
+export type TrackingProviderCode = "mock" | "positron" | "sascar";
+export type TrackingProviderStatus = "not_configured" | "mock_active" | "configured" | "error";
+export type TrackingDeviceStatus = "active" | "inactive" | "offline";
+export type TrackingSyncStatus = "running" | "success" | "error";
+
 export type Database = {
   public: {
     Tables: {
@@ -309,6 +314,186 @@ export type Database = {
           new_status?: "scheduled" | "loading" | "in_transit" | "delivered" | "completed" | "cancelled";
           notes?: string | null;
           changed_at?: string;
+        };
+        Relationships: [];
+      };
+      tracking_providers: {
+        Row: {
+          id: string;
+          company_id: string;
+          name: string;
+          code: TrackingProviderCode;
+          active: boolean;
+          status: TrackingProviderStatus;
+          notes: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          company_id: string;
+          name: string;
+          code: TrackingProviderCode;
+          active?: boolean;
+          status?: TrackingProviderStatus;
+          notes?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          company_id?: string;
+          name?: string;
+          code?: TrackingProviderCode;
+          active?: boolean;
+          status?: TrackingProviderStatus;
+          notes?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      tracking_devices: {
+        Row: {
+          id: string;
+          company_id: string;
+          vehicle_id: string;
+          provider_id: string;
+          external_id: string;
+          status: TrackingDeviceStatus;
+          last_sync_at: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          company_id: string;
+          vehicle_id: string;
+          provider_id: string;
+          external_id: string;
+          status?: TrackingDeviceStatus;
+          last_sync_at?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          company_id?: string;
+          vehicle_id?: string;
+          provider_id?: string;
+          external_id?: string;
+          status?: TrackingDeviceStatus;
+          last_sync_at?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      tracking_positions: {
+        Row: {
+          id: string;
+          company_id: string;
+          tracking_device_id: string;
+          vehicle_id: string;
+          latitude: number;
+          longitude: number;
+          speed: number;
+          ignition: boolean;
+          heading: number | null;
+          odometer: number | null;
+          recorded_at: string;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          company_id: string;
+          tracking_device_id: string;
+          vehicle_id: string;
+          latitude: number;
+          longitude: number;
+          speed?: number;
+          ignition?: boolean;
+          heading?: number | null;
+          odometer?: number | null;
+          recorded_at: string;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          company_id?: string;
+          tracking_device_id?: string;
+          vehicle_id?: string;
+          latitude?: number;
+          longitude?: number;
+          speed?: number;
+          ignition?: boolean;
+          heading?: number | null;
+          odometer?: number | null;
+          recorded_at?: string;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
+      tracking_events: {
+        Row: {
+          id: string;
+          company_id: string;
+          tracking_device_id: string;
+          event_type: string;
+          payload: Json;
+          recorded_at: string;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          company_id: string;
+          tracking_device_id: string;
+          event_type: string;
+          payload?: Json;
+          recorded_at: string;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          company_id?: string;
+          tracking_device_id?: string;
+          event_type?: string;
+          payload?: Json;
+          recorded_at?: string;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
+      tracking_sync_logs: {
+        Row: {
+          id: string;
+          company_id: string;
+          provider_id: string;
+          status: TrackingSyncStatus;
+          message: string | null;
+          started_at: string;
+          finished_at: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          company_id: string;
+          provider_id: string;
+          status: TrackingSyncStatus;
+          message?: string | null;
+          started_at?: string;
+          finished_at?: string | null;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          company_id?: string;
+          provider_id?: string;
+          status?: TrackingSyncStatus;
+          message?: string | null;
+          started_at?: string;
+          finished_at?: string | null;
+          created_at?: string;
         };
         Relationships: [];
       };
